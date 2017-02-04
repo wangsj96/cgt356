@@ -1,0 +1,26 @@
+breeds: Shiba Inu; Alaskan Malamute; Siberian Husky; Pembroke Welsh Corgi; Samoyed
+
+CREATE TABLE dogType (
+	typeID varchar(50) PRIMARY KEY,
+	typeName varchar(50)
+);
+CREATE TABLE userType (
+	typeID varchar(30) PRIMARY KEY
+);
+CREATE TABLE user (
+	Login char(15) PRIMARY KEY,
+	FirstName char(30),
+	LastName char(30),
+	Passwd char(60),
+	Email char(40),
+	type varchar(30) REFERENCES userType(typeID),
+	typeID varchar(50) REFERENCES dogType(typeID)
+);
+CREATE TABLE dogImage (
+	imageID varchar(50) PRIMARY KEY,
+	typeID varchar(50) REFERENCES dogType(typeID),
+	imgNum int,
+	imgDesc varchar(100)
+);
+INSERT INTO dogType (typeID, typeName) VALUES ("ShibaInu","Shiba Inu"), ("AlaskanMalamute", "Alaskan Malamute"), ("SiberianHusky", "Siberian Husky"), ("WelshCorgi", "Welsh Corgi"), ("Samoyed", "Samoyed");
+INSERT INTO userType (typeID) VALUES ("User"), ("CategoryAdmin"), ("SuperAdmin")
